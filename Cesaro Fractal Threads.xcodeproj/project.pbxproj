@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BE12A0027BCA1B400C70528 /* KochFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE129FF27BCA1B400C70528 /* KochFractal.swift */; };
+		2BE12A0127BDCCF100C70528 /* KochFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BE129FF27BCA1B400C70528 /* KochFractal.swift */; };
 		A53B60992798FB690040414D /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60982798FB690040414D /* Tests_iOS.swift */; };
 		A53B609B2798FB690040414D /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B609A2798FB690040414D /* Tests_iOSLaunchTests.swift */; };
 		A53B60A52798FB690040414D /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60A42798FB690040414D /* Tests_macOS.swift */; };
@@ -17,14 +19,10 @@
 		A53B60AB2798FB690040414D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60832798FB690040414D /* ContentView.swift */; };
 		A53B60AC2798FB690040414D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53B60842798FB690040414D /* Assets.xcassets */; };
 		A53B60AD2798FB690040414D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A53B60842798FB690040414D /* Assets.xcassets */; };
-		A53B60BD2798FE5C0040414D /* CesaroFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60BC2798FE5C0040414D /* CesaroFractal.swift */; };
-		A53B60BE2798FE5C0040414D /* CesaroFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60BC2798FE5C0040414D /* CesaroFractal.swift */; };
-		A53B60BF2798FE5C0040414D /* CesaroFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60BC2798FE5C0040414D /* CesaroFractal.swift */; };
-		A53B60C02798FE5C0040414D /* CesaroFractal.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60BC2798FE5C0040414D /* CesaroFractal.swift */; };
-		A53B60C2279900600040414D /* Cesaro_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Cesaro_Functions.swift */; };
-		A53B60C3279900600040414D /* Cesaro_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Cesaro_Functions.swift */; };
-		A53B60C4279900600040414D /* Cesaro_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Cesaro_Functions.swift */; };
-		A53B60C5279900600040414D /* Cesaro_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Cesaro_Functions.swift */; };
+		A53B60C2279900600040414D /* Koch_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Koch_Functions.swift */; };
+		A53B60C3279900600040414D /* Koch_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Koch_Functions.swift */; };
+		A53B60C4279900600040414D /* Koch_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Koch_Functions.swift */; };
+		A53B60C5279900600040414D /* Koch_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C1279900600040414D /* Koch_Functions.swift */; };
 		A53B60C72799011C0040414D /* CesaroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C62799011C0040414D /* CesaroView.swift */; };
 		A53B60C82799011C0040414D /* CesaroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C62799011C0040414D /* CesaroView.swift */; };
 		A53B60C92799011C0040414D /* CesaroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A53B60C62799011C0040414D /* CesaroView.swift */; };
@@ -49,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2BE129FF27BCA1B400C70528 /* KochFractal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KochFractal.swift; sourceTree = "<group>"; };
 		A53B60822798FB690040414D /* Cesaro_Fractal_ThreadsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cesaro_Fractal_ThreadsApp.swift; sourceTree = "<group>"; };
 		A53B60832798FB690040414D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A53B60842798FB690040414D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,8 +59,7 @@
 		A53B60A02798FB690040414D /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A53B60A42798FB690040414D /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		A53B60A62798FB690040414D /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		A53B60BC2798FE5C0040414D /* CesaroFractal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CesaroFractal.swift; sourceTree = "<group>"; };
-		A53B60C1279900600040414D /* Cesaro_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cesaro_Functions.swift; sourceTree = "<group>"; };
+		A53B60C1279900600040414D /* Koch_Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koch_Functions.swift; sourceTree = "<group>"; };
 		A53B60C62799011C0040414D /* CesaroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CesaroView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,8 +111,8 @@
 				A53B60822798FB690040414D /* Cesaro_Fractal_ThreadsApp.swift */,
 				A53B60832798FB690040414D /* ContentView.swift */,
 				A53B60C62799011C0040414D /* CesaroView.swift */,
-				A53B60BC2798FE5C0040414D /* CesaroFractal.swift */,
-				A53B60C1279900600040414D /* Cesaro_Functions.swift */,
+				2BE129FF27BCA1B400C70528 /* KochFractal.swift */,
+				A53B60C1279900600040414D /* Koch_Functions.swift */,
 				A53B60842798FB690040414D /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -308,9 +306,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B60C72799011C0040414D /* CesaroView.swift in Sources */,
-				A53B60BD2798FE5C0040414D /* CesaroFractal.swift in Sources */,
 				A53B60AA2798FB690040414D /* ContentView.swift in Sources */,
-				A53B60C2279900600040414D /* Cesaro_Functions.swift in Sources */,
+				A53B60C2279900600040414D /* Koch_Functions.swift in Sources */,
+				2BE12A0027BCA1B400C70528 /* KochFractal.swift in Sources */,
 				A53B60A82798FB690040414D /* Cesaro_Fractal_ThreadsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,10 +317,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BE12A0127BDCCF100C70528 /* KochFractal.swift in Sources */,
 				A53B60C82799011C0040414D /* CesaroView.swift in Sources */,
-				A53B60BE2798FE5C0040414D /* CesaroFractal.swift in Sources */,
 				A53B60AB2798FB690040414D /* ContentView.swift in Sources */,
-				A53B60C3279900600040414D /* Cesaro_Functions.swift in Sources */,
+				A53B60C3279900600040414D /* Koch_Functions.swift in Sources */,
 				A53B60A92798FB690040414D /* Cesaro_Fractal_ThreadsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,9 +330,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B60C92799011C0040414D /* CesaroView.swift in Sources */,
-				A53B60BF2798FE5C0040414D /* CesaroFractal.swift in Sources */,
 				A53B609B2798FB690040414D /* Tests_iOSLaunchTests.swift in Sources */,
-				A53B60C4279900600040414D /* Cesaro_Functions.swift in Sources */,
+				A53B60C4279900600040414D /* Koch_Functions.swift in Sources */,
 				A53B60992798FB690040414D /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,9 +341,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53B60CA2799011C0040414D /* CesaroView.swift in Sources */,
-				A53B60C02798FE5C0040414D /* CesaroFractal.swift in Sources */,
 				A53B60A72798FB690040414D /* Tests_macOSLaunchTests.swift in Sources */,
-				A53B60C5279900600040414D /* Cesaro_Functions.swift in Sources */,
+				A53B60C5279900600040414D /* Koch_Functions.swift in Sources */,
 				A53B60A52798FB690040414D /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,7 +481,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V59RVGUYZD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -515,7 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V59RVGUYZD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -547,7 +543,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V59RVGUYZD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -576,7 +572,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = V59RVGUYZD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;

@@ -1,16 +1,16 @@
 //
-//  CesaroFractal.swift
-//  CesaroFractal
+//  KochFractal.swift
+//  Cesaro Fractal Threads (iOS)
 //
-//  Created by Jeff_Terry on 1/19/22.
+//  Created by Shayarneel Kundu on 2/15/22.
 //
 
 import Foundation
 import SwiftUI
 
-class CesaroFractal: NSObject, ObservableObject {
+class KochFractal: NSObject, ObservableObject {
     
-    @MainActor @Published var cesaroVerticesForPath = [(xPoint: Double, yPoint: Double)]() ///Array of tuples
+    @MainActor @Published var KochVerticesForPath = [(xPoint: Double, yPoint: Double)]() ///Array of tuples
     @Published var timeString = ""
     @Published var enableButton = true
     
@@ -30,13 +30,13 @@ class CesaroFractal: NSObject, ObservableObject {
         
         super.init()
         
-        cesaroVerticesForPath = []
+        KochVerticesForPath = []
 
         
     }
 
     
-    /// calculateCesaro
+    /// calculateKoch
     ///
     /// This function ensures that the program will not crash if non-valid input is applied.
     ///
@@ -44,7 +44,7 @@ class CesaroFractal: NSObject, ObservableObject {
     ///   - iterations: number of iterations in the fractal
     ///   - piAngleDivisor: integer that sets the angle as pi/piAngleDivisor so if 2, then the angle is π/2
     ///
-    func calculateCesaro(iterations: Int?, piAngleDivisor: Int?) async {
+    func calculateKoch(iterations: Int?, piAngleDivisor: Int?) async {
         
             
                 var newIterations :Int? = 0
@@ -69,25 +69,25 @@ class CesaroFractal: NSObject, ObservableObject {
         
         print("Start Time of \(newIterations!) \(Date())\n")
         
-        await calculateCesaroFractalVertices(iterations: newIterations!, piAngleDivisor: newPiAngleDivisor!)
+        await calculateKochFractalVertices(iterations: newIterations!, piAngleDivisor: newPiAngleDivisor!)
         
         print("End Time of \(newIterations!) \(Date())\n")
     }
         
     
-    /// calculateCesaroFractalVertices
+    /// calculateKochFractalVertices
     ///
     /// - Parameters:
     ///   - iterations: number of iterations in the fractal
     ///   - piAngleDivisor: integer that sets the angle as pi/piAngleDivisor so if 2, then the angle is π/2
     ///
-    func calculateCesaroFractalVertices(iterations: Int, piAngleDivisor: Int) async  {
+    func calculateKochFractalVertices(iterations: Int, piAngleDivisor: Int) async  {
         
-        var CesaroPoints: [(xPoint: Double, yPoint: Double)] = []  ///Array of tuples
+        var KochPoints: [(xPoint: Double, yPoint: Double)] = []  ///Array of tuples
         
         var x: CGFloat = 0
         var y: CGFloat = 0
-        let size: Double = 550
+        let size: Double = 500
         
         let width :CGFloat = 600.0
         let height :CGFloat = 600.0
@@ -97,26 +97,26 @@ class CesaroFractal: NSObject, ObservableObject {
         let center = CGPoint(x: width / 2, y: height / 2)
         
         // Offset from center in y-direction for Cesaro Fractal
-        let yoffset = size/(2.0*tan(45.0/180.0*Double.pi))
+        let yoffset = -130
         
         x = center.x - CGFloat(size/2.0)
         y = height/2.0 - CGFloat(yoffset)
         
-        guard iterations >= 0 else { await updateData(pathData: CesaroPoints)
+        guard iterations >= 0 else { await updateData(pathData: KochPoints)
             return  }
-        guard iterations <= 15 else { await updateData(pathData: CesaroPoints)
-            return  }
-        
-        guard piAngleDivisor > 0 else { await updateData(pathData: CesaroPoints)
+        guard iterations <= 15 else { await updateData(pathData: KochPoints)
             return  }
         
-        guard piAngleDivisor <= 50 else { await updateData(pathData: CesaroPoints)
+        guard piAngleDivisor > 0 else { await updateData(pathData: KochPoints)
+            return  }
+        
+        guard piAngleDivisor <= 50 else { await updateData(pathData: KochPoints)
             return  }
     
-        CesaroPoints = CesaroFractalCalculator(fractalnum: iterations, x: x, y: y, size: size, angleDivisor: piAngleDivisor)
+        KochPoints = KochFractalCalculator(fractalnum: iterations, x: x, y: y, size: size, angleDivisor: piAngleDivisor)
         
             
-        await updateData(pathData: CesaroPoints)
+        await updateData(pathData: KochPoints)
         
         
         
@@ -133,13 +133,13 @@ class CesaroFractal: NSObject, ObservableObject {
     ///
     @MainActor func updateData(pathData: [(xPoint: Double, yPoint: Double)]){
         
-        cesaroVerticesForPath.append(contentsOf: pathData)
+        KochVerticesForPath.append(contentsOf: pathData)
         
     }
     
     /// eraseData
     ///
-    /// This function erases the cesaroVertices on the main thread so the drawing can be cleared
+    /// This function erases the KochVertices on the main thread so the drawing can be cleared
     ///
     @MainActor func eraseData(){
         
@@ -147,7 +147,7 @@ class CesaroFractal: NSObject, ObservableObject {
             await MainActor.run {
                 
                 
-                self.cesaroVerticesForPath.removeAll()
+                self.KochVerticesForPath.removeAll()
             }
         }
 
@@ -170,7 +170,7 @@ class CesaroFractal: NSObject, ObservableObject {
     /// Toggles the state of the Enable Button on the Main Thread
     ///
     /// - Parameter state: Boolean describing whether the button should be enabled.
-    /// 
+    ///
     @MainActor func setButtonEnable(state: Bool){
         
         
@@ -202,3 +202,4 @@ class CesaroFractal: NSObject, ObservableObject {
     }
 
 }
+

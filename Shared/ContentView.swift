@@ -25,12 +25,14 @@ struct ContentView: View {
     
     // Setup the GUI to monitor the data from the Cesaro Fractal Calculator
     
-    @ObservedObject var cesaroFractalSmall = CesaroFractal(withData: true)
-    @ObservedObject var cesaroFractalSmall2 = CesaroFractal(withData: true)
-    @ObservedObject var cesaroFractalSmall3 = CesaroFractal(withData: true)
-    @ObservedObject var cesaroFractalSmall4 = CesaroFractal(withData: true)
-    @ObservedObject var cesaroFractalSmall5 = CesaroFractal(withData: true)
-    @ObservedObject var cesaroFractalLarge = CesaroFractal(withData: true)
+//    @ObservedObject var cesaroFractalSmall = KochFractal(withData: true)
+//    @ObservedObject var cesaroFractalSmall2 = KochFractal(withData: true)
+//    @ObservedObject var cesaroFractalSmall3 = KochFractal(withData: true)
+//    @ObservedObject var cesaroFractalSmall4 = KochFractal(withData: true)
+//    @ObservedObject var cesaroFractalSmall5 = KochFractal(withData: true)
+//    @ObservedObject var kochFractal = KochFractal(withData: true)
+    
+    @ObservedObject var kochFractal = KochFractal(withData: true)
     
     //Setup the GUI View
     var body: some View {
@@ -70,29 +72,37 @@ struct ContentView: View {
 //                }
                 
 
-                Button("Sync", action: {Task.init{
+//                Button("Sync", action: {Task.init{
+//
+//                    print("Start time \(Date())\n")
+//                    await self.calculateSyncCesaro()}})
+//                    .padding()
+//                    .frame(width: 100.0)
+//                    .disabled(kochFractal.enableButton == false)
+//
+//                Button("Async", action: {Task.init{
+//
+//                    print("Start time \(Date())\n")
+//                    await self.calculateCesaro()}})
+//                    .padding()
+//                    .frame(width: 100.0)
+//                    .disabled(kochFractal.enableButton == false)
+                
+                Button("Koch", action: {Task.init{
                     
                     print("Start time \(Date())\n")
-                    await self.calculateSyncCesaro()}})
+                    await self.calculateKoch()}})
                     .padding()
                     .frame(width: 100.0)
-                    .disabled(cesaroFractalLarge.enableButton == false)
+                    .disabled(kochFractal.enableButton == false)
                 
-                Button("Async", action: {Task.init{
-                    
-                    print("Start time \(Date())\n")
-                    await self.calculateCesaro()}})
-                    .padding()
-                    .frame(width: 100.0)
-                    .disabled(cesaroFractalLarge.enableButton == false)
+//                Button("Clear", action: {Task.init{
+//
+//                    await self.clear()}})
+//                    .padding(.bottom, 5.0)
+//                    .disabled(kochFractal.enableButton == false)
                 
-                Button("Clear", action: {Task.init{
-                    
-                    await self.clear()}})
-                    .padding(.bottom, 5.0)
-                    .disabled(cesaroFractalLarge.enableButton == false)
-                
-                if (!cesaroFractalLarge.enableButton){
+                if (!kochFractal.enableButton){
                     
                     ProgressView()
                 }
@@ -104,19 +114,19 @@ struct ContentView: View {
             //DrawingField
             
             HStack{
-                CesaroView(cesaroVertices: $cesaroFractalSmall.cesaroVerticesForPath)
+                CesaroView(cesaroVertices: $kochFractal.KochVerticesForPath)
                     .padding()
                     .aspectRatio(1, contentMode: .fit)
                     .drawingGroup()
                 // Stop the window shrinking to zero.
                 Spacer()
                 
-                CesaroView(cesaroVertices: $cesaroFractalLarge.cesaroVerticesForPath)
-                    .padding()
-                    .aspectRatio(1, contentMode: .fit)
-                    .drawingGroup()
-                // Stop the window shrinking to zero.
-                Spacer()
+//                CesaroView(cesaroVertices: $kochFractal.cesaroVerticesForPath)
+//                    .padding()
+//                    .aspectRatio(1, contentMode: .fit)
+//                    .drawingGroup()
+//                // Stop the window shrinking to zero.
+//                Spacer()
             }
         }
     }
@@ -128,10 +138,10 @@ struct ContentView: View {
     /// Both calculations are placed in the same TaskGroup
     /// Should use await to update the GUI upon completion rather than printing time to console.
     ///
-    func calculateSyncCesaro() async {
+    func calculateKoch() async {
         
 
-    cesaroFractalLarge.setButtonEnable(state: false)
+    kochFractal.setButtonEnable(state: false)
         
 
             
@@ -142,24 +152,14 @@ struct ContentView: View {
                 
                     
                 
-                    await cesaroFractalLarge.calculateCesaro(iterations: totalIterations, piAngleDivisor: cesaroAngle)
-                    
-
-                    
-                    
-                    let iterations: Int? = 1
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
+                    await kochFractal.calculateKoch(iterations: totalIterations, piAngleDivisor: cesaroAngle)
             }
         
     }
 
         
         
-        cesaroFractalLarge.setButtonEnable(state: true)
+        kochFractal.setButtonEnable(state: true)
         
         print("End Time of \(Date())\n")
         
@@ -170,98 +170,97 @@ struct ContentView: View {
     /// Uses TaskGroup to calculate 6 Cesaro Fractals concurrently
     /// Should use await to update the GUI upon completion rather than printing time to console.
     ///
-    func calculateCesaro() async {
-        
-
-    cesaroFractalLarge.setButtonEnable(state: false)
-        
-            
-            let _ = await withTaskGroup(of:  Void.self) { taskGroup in
-                
-            
-                taskGroup.addTask(priority: .high){
-                
-                
-                    await cesaroFractalLarge.calculateCesaro(iterations: totalIterations, piAngleDivisor: cesaroAngle)
-                    
-                
-            }
-                
-                taskGroup.addTask(priority: .high) {
-                    
-                    
-                    let iterations: Int? = 9
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall2.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
-            }
-                
-                taskGroup.addTask(priority: .high) {
-                    
-                    
-                    let iterations: Int? = 8
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall3.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
-            }
-                
-                taskGroup.addTask(priority: .high) {
-                    
-                    
-                    let iterations: Int? = 7
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall4.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
-            }
-                
-                taskGroup.addTask(priority: .high) {
-                    
-                    
-                    let iterations: Int? = 5
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall5.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
-            }
-
-                
-                taskGroup.addTask(priority: .high) {
-                    
-                    
-                    let iterations: Int? = 1
-                    let angle: Int? = 4
-                    
-                
-                    await cesaroFractalSmall.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
-                
-            }
-        
-    }
-
-        
-        cesaroFractalLarge.setButtonEnable(state: true)
-        
-        print("End Time of \(Date())\n")
-        
-    }
+//    func calculateCesaro() async {
+//
+//
+//    kochFractal.setButtonEnable(state: false)
+//
+//
+//            let _ = await withTaskGroup(of:  Void.self) { taskGroup in
+//
+//
+//                taskGroup.addTask(priority: .high){
+//
+//
+//                    await kochFractal.calculateCesaro(iterations: totalIterations, piAngleDivisor: cesaroAngle)
+//
+//
+//            }
+//
+//                taskGroup.addTask(priority: .high) {
+//
+//
+//                    let iterations: Int? = 9
+//                    let angle: Int? = 4
+//
+//
+//                    await cesaroFractalSmall2.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
+//
+//            }
+//
+//                taskGroup.addTask(priority: .high) {
+//
+//
+//                    let iterations: Int? = 8
+//                    let angle: Int? = 4
+//
+//
+//                    await cesaroFractalSmall3.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
+//
+//            }
+//
+//                taskGroup.addTask(priority: .high) {
+//
+//
+//                    let iterations: Int? = 7
+//                    let angle: Int? = 4
+//
+//
+//                    await cesaroFractalSmall4.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
+//
+//            }
+//
+//                taskGroup.addTask(priority: .high) {
+//
+//
+//                    let iterations: Int? = 5
+//                    let angle: Int? = 4
+//
+//
+//                    await cesaroFractalSmall5.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
+//
+//            }
+//
+//
+//                taskGroup.addTask(priority: .high) {
+//
+//
+//                    let iterations: Int? = 1
+//                    let angle: Int? = 4
+//
+//
+//                    await cesaroFractalSmall.calculateCesaro(iterations: iterations, piAngleDivisor: angle)
+//
+//            }
+//
+//    }
+//
+//
+//        kochFractal.setButtonEnable(state: true)
+//
+//        print("End Time of \(Date())\n")
+//
+//    }
     
     /// clear
     ///
     /// Clears the two display views by erasing the Data
     ///
-    func clear() async{
-        
-        cesaroFractalSmall.eraseData()
-        cesaroFractalLarge.eraseData()
-        
-    }
+//    func clear() async{
+//        
+//        kochFractal.eraseData()
+//        
+//    }
     
 }
 

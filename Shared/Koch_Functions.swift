@@ -47,7 +47,7 @@ func turn (angle: CGFloat, angleChange: Double) -> CGFloat
 }
 
 
-/// CesaroFractalCalculator
+/// KochFractalCalculator
 ///
 /// Calculates the 4 sided Cesaro Fractal
 ///
@@ -59,7 +59,7 @@ func turn (angle: CGFloat, angleChange: Double) -> CGFloat
 ///   - angleDivisor: integer that sets the angle as pi/piAngleDivisor so if 2, then the angle is π/2
 /// - Returns: array of x and y points for all of the vertices in the Cesaro Fractal. Used to make the path for the view
 ///
-func CesaroFractalCalculator(fractalnum: Int, x: CGFloat, y: CGFloat, size: Double, angleDivisor: Int) -> [(xPoint: Double, yPoint: Double)]
+func KochFractalCalculator(fractalnum: Int, x: CGFloat, y: CGFloat, size: Double, angleDivisor: Int) -> [(xPoint: Double, yPoint: Double)]
 {
     var allThePoints: [(xPoint: Double, yPoint: Double)] = []  ///Array of tuples
     var myX = x
@@ -67,30 +67,30 @@ func CesaroFractalCalculator(fractalnum: Int, x: CGFloat, y: CGFloat, size: Doub
     
     var angle: CGFloat = 0.0
     var angleChange: CGFloat = 0.0
-
+	
     allThePoints.append((xPoint: Double(x), yPoint: Double(y)))
     
     // Calculates Side 1
-    angleChange = 90.0
-    allThePoints += calculateCesaroSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
+    angleChange = 60.0
+    allThePoints += calculateKochSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
                     
     // Calculates Side 2
-    angleChange = -90.0
-    allThePoints += calculateCesaroSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
+    angleChange = -120.0
+    allThePoints += calculateKochSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
     
     // Calculates Side 3
-    angleChange = -90.0
-    allThePoints += calculateCesaroSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
+    angleChange = -120.0
+    allThePoints += calculateKochSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
 
     // Calculates Side 4
-    angleChange = -90.0
-    allThePoints += calculateCesaroSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
+    //angleChange = -90.0
+    //allThePoints += calculateCesaroSide(&angle, &angleChange, fractalnum, &myX, &myY, size, angleDivisor)
     
     return(allThePoints)
     
 }
 
-/// calculateCesaroSide
+/// calculateKochSide
 ///
 /// Calculates the Cesaro Fractal from each side of the original 4 sided shape
 ///
@@ -104,12 +104,12 @@ func CesaroFractalCalculator(fractalnum: Int, x: CGFloat, y: CGFloat, size: Doub
 ///   - angleDivisor: integer that sets the angle as pi/piAngleDivisor so if 2, then the angle is π/2
 /// - Returns: array of x and y points for all of the vertices in the Cesaro Fractal
 ///
-func calculateCesaroSide(_ angle: inout CGFloat, _ angleChange: inout CGFloat, _ fractalnum: Int, _ myX: inout CGFloat, _ myY: inout CGFloat, _ size: Double, _ angleDivisor: Int) -> [(xPoint: Double, yPoint: Double)] {
+func calculateKochSide(_ angle: inout CGFloat, _ angleChange: inout CGFloat, _ fractalnum: Int, _ myX: inout CGFloat, _ myY: inout CGFloat, _ size: Double, _ angleDivisor: Int) -> [(xPoint: Double, yPoint: Double)] {
     
     var currentPoint: [(xPoint: Double, yPoint: Double)] = []  ///Array of tuples
     ///
     angle = turn(angle: angle, angleChange: angleChange)
-    currentPoint += CesaroSide(fractalnum: fractalnum, x: myX, y: myY, angle: angle, size: size, divisorForAngle: angleDivisor)
+    currentPoint += KochSide(fractalnum: fractalnum, x: myX, y: myY, angle: angle, size: size, divisorForAngle: angleDivisor)
     myX = CGFloat(currentPoint[currentPoint.endIndex-1].xPoint)
     myY = CGFloat(currentPoint[currentPoint.endIndex-1].yPoint)
     
@@ -118,7 +118,7 @@ func calculateCesaroSide(_ angle: inout CGFloat, _ angleChange: inout CGFloat, _
 }
 
 
-/// CesaroSide
+/// KochSide
 ///
 /// Recursively calculates the Cesaro Fractal by decrementing the fractal number\
 ///
@@ -131,9 +131,9 @@ func calculateCesaroSide(_ angle: inout CGFloat, _ angleChange: inout CGFloat, _
 ///   - divisorForAngle: integer that sets the angle as pi/piAngleDivisor so if 2, then the angle is π/2
 /// - Returns: array of x and y points for all of the vertices in the Cesaro Fractal
 ///
-func CesaroSide(fractalnum: Int, x: CGFloat, y: CGFloat, angle: CGFloat, size: Double, divisorForAngle: Int) -> [(xPoint: Double, yPoint: Double)] {
+func KochSide(fractalnum: Int, x: CGFloat, y: CGFloat, angle: CGFloat, size: Double, divisorForAngle: Int) -> [(xPoint: Double, yPoint: Double)] {
     
-    var myAngle = angle
+    var myAngle = -angle
     var myX = x
     var myY = y
     let piDivisorForAngle = divisorForAngle
@@ -151,25 +151,25 @@ func CesaroSide(fractalnum: Int, x: CGFloat, y: CGFloat, angle: CGFloat, size: D
         
         let newSizeOfSide = size/(2.0*(1.0+sin(((theta))/2.0)))
         
-        currentPoint += CesaroSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
+        currentPoint += KochSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: -myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
         myX = CGFloat(currentPoint[currentPoint.endIndex-1].xPoint)
         myY = CGFloat(currentPoint[currentPoint.endIndex-1].yPoint)
         
         myAngle = turn(angle: myAngle, angleChange: -(90.0-thetaDeg/2.0))
         
-        currentPoint += CesaroSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
+        currentPoint += KochSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: -myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
         myX = CGFloat(currentPoint[currentPoint.endIndex-1].xPoint)
         myY = CGFloat(currentPoint[currentPoint.endIndex-1].yPoint)
         
         myAngle = turn(angle: myAngle, angleChange: (180.0-thetaDeg))
         
-        currentPoint += CesaroSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
+        currentPoint += KochSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: -myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
         myX = CGFloat(currentPoint[currentPoint.endIndex-1].xPoint)
         myY = CGFloat(currentPoint[currentPoint.endIndex-1].yPoint)
         
         myAngle = turn(angle: myAngle, angleChange: -(90.0-thetaDeg/2.0))
         
-        currentPoint += CesaroSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
+        currentPoint += KochSide(fractalnum: fractalnum-1, x: myX, y: myY, angle: -myAngle, size: newSizeOfSide, divisorForAngle: piDivisorForAngle)
         
         
     }
